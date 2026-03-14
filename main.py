@@ -36,11 +36,17 @@ import requests
 from flask import Flask
 from threading import Thread
 
-app = Flask('')
+# Is line ko dhoondhein aur aise hi rehne dein
+app = Flask(__name__)
 
 @app.route('/')
 def home():
     return "I'am KASHISH LIVE"
+
+# Iske niche wala 'run_flask' aur 'keep_alive' function Vercel ke liye hata sakte hain
+# Kyunki Vercel khud handles karta hai. Bas ye line zaroor ho:
+if __name__ == "__main__":
+    app.run()
 
 def run_flask():
   # Make sure to run on port provided by environment or default to 8080
